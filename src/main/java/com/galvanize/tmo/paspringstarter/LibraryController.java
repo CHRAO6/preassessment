@@ -3,8 +3,11 @@ package com.galvanize.tmo.paspringstarter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class LibraryController {
@@ -21,8 +24,10 @@ public class LibraryController {
 
     @GetMapping("/api/books")
     @ResponseStatus(HttpStatus.OK)
-    public List<Books> readBooks() {
-        return bookList;
+    public Map<String, List<Books>> readBooks() {
+        Map<String, List<Books>> books = new HashMap<String, List<Books>>();
+        books.put("books", bookList);
+        return books;
     }
 
     @DeleteMapping("/api/books")
